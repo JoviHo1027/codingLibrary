@@ -1,10 +1,18 @@
+class TreeNode {
+    constructor(val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
 class BinarySearchTree {
     constructor() {
         this.root = null;
     }
 
-    insert(data) {
-        var newNode = new Node(data);
+    insert(val) {
+        var newNode = new TreeNode(val);
 
         if (this.root === null)
             this.root = newNode;
@@ -14,7 +22,7 @@ class BinarySearchTree {
 
 
     insertNode(node, newNode) {
-        if (newNode.data < node.data) {
+        if (newNode.val < node.val) {
             if (node.left === null)
                 node.left = newNode;
             else
@@ -29,18 +37,18 @@ class BinarySearchTree {
         }
     }
 
-    remove(data) {
-        this.root = this.removeNode(this.root, data);
+    remove(val) {
+        this.root = this.removeNode(this.root, val);
     }
 
     removeNode(node, key) {
         if (node === null)
             return null;
 
-        else if (key < node.data) {
+        else if (key < node.val) {
             node.left = this.removeNode(node.left, key);
             return node;
-        } else if (key > node.data) {
+        } else if (key > node.val) {
             node.right = this.removeNode(node.right, key);
             return node;
         } else {
@@ -58,9 +66,9 @@ class BinarySearchTree {
             }
 
             var aux = this.findMinNode(node.right);
-            node.data = aux.data;
+            node.val = aux.val;
 
-            node.right = this.removeNode(node.right, aux.data);
+            node.right = this.removeNode(node.right, aux.val);
             return node;
         }
 
@@ -91,15 +99,15 @@ class BinarySearchTree {
             return [];
         return [...inOrder(node.left), ...inOrder(node.right), node.val];
     }
-    search(node, data) {
+    search(node, val) {
         if (node === null)
             return null;
 
-        else if (data < node.data)
-            return this.search(node.left, data);
+        else if (val < node.val)
+            return this.search(node.left, val);
 
-        else if (data > node.data)
-            return this.search(node.right, data);
+        else if (val > node.val)
+            return this.search(node.right, val);
 
         else
             return node;
