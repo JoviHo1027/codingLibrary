@@ -23,3 +23,18 @@ let arrToObj = (arr) => {
     }
     return map;
 }
+
+let range = (min, max) => {
+    var len = max - min + 1;
+    var arr = new Array(len);
+    for (var i = 0; i < len; i++) {
+        arr[i] = min + i;
+    }
+    return arr;
+}
+
+let multipleOccurance = (arr) => {
+    return arr.reduce((prev, curr, index) => {
+        return ((index + 1) * (arr.length - index)) * curr + prev;
+    }, 0)
+}
